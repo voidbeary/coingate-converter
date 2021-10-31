@@ -4,8 +4,10 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import { Box } from "@mui/system";
 import Link from "@mui/material/Link";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Home: NextPage = () => {
+  const isDesktop = useMediaQuery("(min-width:600px)");
   return (
     <>
       <Head>
@@ -24,6 +26,7 @@ const Home: NextPage = () => {
             width: "85%",
             position: "relative",
             paddingTop: "9.5vh",
+            paddingRight: "25%",
             "&::before": {
               content: '""',
               zIndex: -1,
@@ -41,9 +44,16 @@ const Home: NextPage = () => {
         >
           <Box
             sx={{
-              width: "50%",
+              display: "grid",
+              gridTemplateColumns: "50% 50%",
+              gridTemplateRows: "50% 50%",
+              gridTemplateAreas: isDesktop
+                ? `"header form""paragraph form"`
+                : `"header""form""form""paragraph"`,
+              columnGap: "18%",
+              width: "100%",
               minHeight: "50vh",
-              paddingTop: "5%",
+              paddingTop: "10%",
               paddingLeft: "10%",
               paddingBottom: "10%",
             }}
@@ -51,7 +61,8 @@ const Home: NextPage = () => {
             <Typography
               variant="h1"
               color="secondary.contrastText"
-              gutterBottom
+              sx={{ gridArea: "header" }}
+              mb={5}
             >
               <Typography variant="h1" component="span" color="primary.main">
                 {"Buy Bitcoin, "}
@@ -61,29 +72,50 @@ const Home: NextPage = () => {
                 online
               </Typography>
             </Typography>
-            <Typography
-              variant="body1"
-              color="secondary.contrastText"
-              gutterBottom
-            >
-              Why bother going through complicated exchanges? Buy cryptocurrency
-              with top payment methods like SEPA bank transfer, Credit and Debit
-              Card, Apple Pay, Mobile balance or Klarna. You can buy Bitcoin,
-              Ethereum or any other popular crypto directly to your personal
-              wallet without making any initial deposits. It&apos;s as easy as
-              it gets!
-            </Typography>
-            <Link
-              href="https://dashboard.coingate.com/register"
-              underline="none"
-            >
-              Start now
-            </Link>
+            <Box sx={{ gridArea: "paragraph" }}>
+              <Typography
+                variant="body1"
+                color="secondary.contrastText"
+                gutterBottom
+                sx={{ gridArea: "paragraph" }}
+                mb={3}
+              >
+                Why bother going through complicated exchanges? Buy
+                cryptocurrency with top payment methods like SEPA bank transfer,
+                Credit and Debit Card, Apple Pay, Mobile balance or Klarna. You
+                can buy Bitcoin, Ethereum or any other popular crypto directly
+                to your personal wallet without making any initial deposits.
+                It&apos;s as easy as it gets!
+              </Typography>
+              {isDesktop && (
+                <Link
+                  href="https://dashboard.coingate.com/register"
+                  underline="none"
+                  sx={{ fontSize: "1.25rem" }}
+                >
+                  Start now
+                </Link>
+              )}
+            </Box>
             <Box
               sx={{
                 backgroundColor: "background.paper",
-                width: "50%",
-                minHeight: "50vh",
+                borderRadius: "30px",
+                width: "75%",
+                gridArea: "form",
+                position: "relative",
+                "&::before": {
+                  position: "absolute",
+                  width: "100%",
+                  height: "100%",
+                  content: '""',
+                  zIndex: -1,
+                  backgroundColor: "#E9F6FF",
+                  top: "-10%",
+                  left: "-13%",
+                  transform: "rotate(-5.53deg)",
+                  borderRadius: "30px",
+                },
               }}
             />
           </Box>
