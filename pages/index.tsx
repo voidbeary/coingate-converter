@@ -4,10 +4,13 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import { Box } from "@mui/system";
 import Link from "@mui/material/Link";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 
-const Home: NextPage = () => {
-  const isDesktop = useMediaQuery("(min-width:600px)");
+type Props = {
+  isDesktop: boolean;
+};
+
+const Home: NextPage<Props> = ({ isDesktop }) => {
   return (
     <>
       <Head>
@@ -23,10 +26,10 @@ const Home: NextPage = () => {
         <Box
           sx={{
             float: "right",
-            width: "85%",
+            width: isDesktop ? "85%" : "100%",
             position: "relative",
             paddingTop: "9.5vh",
-            paddingRight: "25%",
+            paddingRight: isDesktop ? "25%" : undefined,
             "&::before": {
               content: '""',
               zIndex: -1,
@@ -37,38 +40,54 @@ const Home: NextPage = () => {
               position: "absolute",
               right: 0,
               top: 0,
-              width: "103%",
+              width: isDesktop ? "103%" : "140%",
               height: "100%",
+              marginLeft: !isDesktop ? undefined : "-40%",
             },
           }}
         >
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: "50% 50%",
-              gridTemplateRows: "50% 50%",
+              gridTemplateColumns: isDesktop ? "50% 50%" : "100%",
+              gridTemplateRows: isDesktop ? "50% 50%" : "25% 50% 25%",
               gridTemplateAreas: isDesktop
                 ? `"header form""paragraph form"`
-                : `"header""form""form""paragraph"`,
+                : `"header""form""paragraph"`,
               columnGap: "18%",
               width: "100%",
               minHeight: "50vh",
               paddingTop: "10%",
               paddingLeft: "10%",
+              paddingRight: "10%",
               paddingBottom: "10%",
             }}
           >
             <Typography
               variant="h1"
               color="secondary.contrastText"
-              sx={{ gridArea: "header" }}
+              sx={{ gridArea: "header", fontSize: isDesktop ? "4rem" : "2rem" }}
               mb={5}
             >
-              <Typography variant="h1" component="span" color="primary.main">
+              <Typography
+                variant="h1"
+                component="span"
+                color="primary.main"
+                sx={{
+                  fontSize: isDesktop ? "4rem" : "2rem",
+                }}
+              >
                 {"Buy Bitcoin, "}
               </Typography>
               {"Ethereum, Litecoin and other crypto "}
-              <Typography variant="h1" component="span" color="primary.main">
+              <Typography
+                variant="h1"
+                component="span"
+                color="primary.main"
+                sx={{
+                  fontSize: isDesktop ? "4rem" : "2rem",
+                }}
+              >
                 online
               </Typography>
             </Typography>
@@ -77,7 +96,10 @@ const Home: NextPage = () => {
                 variant="body1"
                 color="secondary.contrastText"
                 gutterBottom
-                sx={{ gridArea: "paragraph" }}
+                sx={{
+                  gridArea: "paragraph",
+                  fontSize: isDesktop ? "1.5rem" : "1.2rem",
+                }}
                 mb={3}
               >
                 Why bother going through complicated exchanges? Buy
@@ -90,10 +112,14 @@ const Home: NextPage = () => {
               {isDesktop && (
                 <Link
                   href="https://dashboard.coingate.com/register"
-                  underline="none"
-                  sx={{ fontSize: "1.25rem" }}
+                  underline="hover"
+                  sx={{
+                    fontSize: "1.25rem",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
                 >
-                  Start now
+                  Start now <KeyboardArrowRightRoundedIcon />
                 </Link>
               )}
             </Box>
@@ -101,21 +127,25 @@ const Home: NextPage = () => {
               sx={{
                 backgroundColor: "background.paper",
                 borderRadius: "30px",
-                width: "75%",
+                width: isDesktop ? "75%" : "100%",
+                height: "40vh", //TODO: delete me
                 gridArea: "form",
                 position: "relative",
-                "&::before": {
-                  position: "absolute",
-                  width: "100%",
-                  height: "100%",
-                  content: '""',
-                  zIndex: -1,
-                  backgroundColor: "#E9F6FF",
-                  top: "-10%",
-                  left: "-13%",
-                  transform: "rotate(-5.53deg)",
-                  borderRadius: "30px",
-                },
+                marginBottom: isDesktop ? undefined : "10%",
+                "&::before": isDesktop
+                  ? {
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                      content: '""',
+                      zIndex: -1,
+                      backgroundColor: "#E9F6FF",
+                      top: "-10%",
+                      left: "-13%",
+                      transform: "rotate(-5.53deg)",
+                      borderRadius: "30px",
+                    }
+                  : undefined,
               }}
             />
           </Box>
