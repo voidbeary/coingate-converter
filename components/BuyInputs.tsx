@@ -3,6 +3,7 @@ import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
+import InputLabel from "@mui/material/InputLabel";
 
 function BuyInputs({
   handleBuyOnChange,
@@ -24,7 +25,9 @@ function BuyInputs({
         border: isFocused ? "2px solid #16DFB5" : "1px solid #D9D9D9",
       }}
     >
-      <label htmlFor="buy">Buy</label>
+      <InputLabel htmlFor="buy" sx={{ fontSize: "1rem" }}>
+        Buy
+      </InputLabel>
       <InputBase
         id="buy"
         type="text"

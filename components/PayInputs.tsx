@@ -3,6 +3,7 @@ import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
+import InputLabel from "@mui/material/InputLabel";
 
 function PayInputs({
   handlePayOnChange,
@@ -25,7 +26,9 @@ function PayInputs({
         border: isFocused ? "2px solid #16DFB5" : "1px solid #D9D9D9",
       }}
     >
-      <label htmlFor="pay">Pay</label>
+      <InputLabel htmlFor="pay" sx={{ fontSize: "1rem" }}>
+        Pay
+      </InputLabel>
       <InputBase
         id="pay"
         type="text"

@@ -136,7 +136,11 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
             handleBuyCurrencyChange={handleBuyCurrencyChange}
             rates={rates}
           />
-          <InputLabel variant="standard" htmlFor="payment">
+          <InputLabel
+            variant="standard"
+            htmlFor="payment"
+            sx={{ fontSize: "1rem" }}
+          >
             Payment method
           </InputLabel>
           <NativeSelect
@@ -147,6 +151,7 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
               flexDirection: "row",
               borderRadius: "20px",
               border: isFocused ? "2px solid #16DFB5" : "1px solid #D9D9D9",
+              fontSize: "1rem",
               "&::before": {
                 display: "none",
               },
@@ -166,9 +171,15 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           >
-            <option value="bank-transfer">Bank transfer</option>
-            <option value="credit-card">Credit card</option>
-            <option value="debit-card">Debit card</option>
+            <option value="bank-transfer" style={{ fontSize: "1rem" }}>
+              Bank transfer
+            </option>
+            <option value="credit-card" style={{ fontSize: "1rem" }}>
+              Credit card
+            </option>
+            <option value="debit-card" style={{ fontSize: "1rem" }}>
+              Debit card
+            </option>
             );
           </NativeSelect>
           <BuyButton

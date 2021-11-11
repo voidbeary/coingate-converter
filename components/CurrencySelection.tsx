@@ -2,7 +2,6 @@ import InputLabel from "@mui/material/InputLabel";
 import NativeSelect from "@mui/material/NativeSelect";
 import { ChangeEventHandler } from "react";
 import type { FC } from "react";
-import FormControl from "@mui/material/FormControl";
 
 type Props = {
   currencyName: string;
@@ -33,6 +32,7 @@ const CurrencySelection: FC<Props> = ({
           "&::after": {
             display: "none",
           },
+          fontSize: "1rem",
         }}
         inputProps={{
           name: label,
@@ -47,7 +47,7 @@ const CurrencySelection: FC<Props> = ({
       >
         {selectOptions.map((name) => {
           return (
-            <option value={name} key={name}>
+            <option value={name} key={name} style={{ fontSize: "1rem" }}>
               {name}
             </option>
           );
