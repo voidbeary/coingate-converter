@@ -1,34 +1,59 @@
 import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler } from "react";
+import type { FC } from "react";
+import FormControl from "@mui/material/FormControl";
 
-function CurrencySelection({ rates, currencyName, setcurrencyName }) {
+type Props = {
+  currencyName: string;
+  onChange: (currencyName: string) => void;
+  selectOptions: string[];
+  label: string;
+};
+
+const CurrencySelection: FC<Props> = ({
+  currencyName,
+  onChange,
+  selectOptions,
+  label,
+}) => {
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    setcurrencyName(e.target.value);
+    onChange(e.target.value);
   };
 
   return (
-    <FormControl fullWidth>
-      <InputLabel variant="standard" htmlFor="currency">
-        <NativeSelect
-          value={currencyName}
-          inputProps={{
-            name: "currency",
-            id: "currency",
-          }}
-          onChange={handleChange}
-        >
-          {Object.keys(rates).map((name) => {
-            return (
-              <option value={name} key={name}>
-                {name}
-              </option>
-            );
-          })}
-        </NativeSelect>
-      </InputLabel>
-    </FormControl>
+    <>
+      <InputLabel variant="standard" htmlFor={label} />
+      <NativeSelect
+        value={currencyName}
+        sx={{
+          "&::before": {
+            display: "none",
+          },
+          "&::after": {
+            display: "none",
+          },
+        }}
+        inputProps={{
+          name: label,
+          id: label,
+          sx: {
+            "&:focus": {
+              backgroundColor: "transparent",
+            },
+          },
+        }}
+        onChange={handleChange}
+      >
+        {selectOptions.map((name) => {
+          return (
+            <option value={name} key={name}>
+              {name}
+            </option>
+          );
+        })}
+      </NativeSelect>
+    </>
   );
-}
+};
 export { CurrencySelection };

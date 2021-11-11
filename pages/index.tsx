@@ -8,16 +8,18 @@ import { Form } from "../components/Form";
 
 type Props = {
   isDesktop: boolean;
-  rates: {};
 };
 const Home: NextPage<Props> = ({ isDesktop }) => {
-  const [rates, setRates] = useState({});
+  const [rates, setRates] = useState<Record<
+    string,
+    Record<string, string>
+  > | null>(null);
 
   useEffect(
     () => {
       // async function fetchRates() {
       // const response = await fetch("https://api.coingate.com/v2/rates");
-      const rates = function setRates() {
+      function getRates() {
         return {
           BTC: { EUR: "54741.1" },
           LTC: { EUR: "178.91" },
@@ -45,8 +47,8 @@ const Home: NextPage<Props> = ({ isDesktop }) => {
           THETA: { EUR: "6.49" },
           ICP: { EUR: "41.41" },
         };
-      };
-      setRates(rates);
+      }
+      setRates(getRates);
     },
     // fetchRates();
     // }
