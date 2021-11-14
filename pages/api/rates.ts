@@ -9,5 +9,11 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: "John Doe" });
+  fetch("https://api.coingate.com/v2/rates/trader/buy", {
+    mode: "no-cors",
+  }).then((response) =>
+    response.json().then((body) => {
+      res.status(200).json(body);
+    })
+  );
 }
