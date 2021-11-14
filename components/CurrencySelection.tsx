@@ -46,6 +46,7 @@ const CurrencySelection: FC<Props> = ({
         onChange={handleChange}
       >
         {selectOptions.map((name) => {
+          //<img src="https://assets.coingate.com/images/crypto-svgs/btc.svg" />
           return (
             <option value={name} key={name} style={{ fontSize: "1rem" }}>
               {name}

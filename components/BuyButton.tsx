@@ -14,6 +14,8 @@ const BuyButton: FC<Props> = ({ currencyName, disabled }) => {
       type="submit"
       disabled={disabled}
       sx={{
+        textTransform: "none",
+        p: "3% 6%",
         borderRadius: "5px 50px 50px 20px",
         boxShadow: "0px 2px 0px rgba(0, 0, 0, 0.043)",
         width: "100%",

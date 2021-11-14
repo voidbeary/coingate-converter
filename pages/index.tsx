@@ -15,45 +15,41 @@ const Home: NextPage<Props> = ({ isDesktop }) => {
     Record<string, string>
   > | null>(null);
 
-  useEffect(
-    () => {
-      // async function fetchRates() {
+  useEffect(() => {
+    async function fetchRates() {
       // const response = await fetch("https://api.coingate.com/v2/rates");
-      function getRates() {
-        return {
-          BTC: { EUR: "54741.1" },
-          LTC: { EUR: "178.91" },
-          ETH: { EUR: "3978.72" },
-          BCH: { EUR: "533.0" },
-          XRP: { EUR: "1.04" },
-          NANO: { EUR: "5.35" },
-          TRX: { EUR: "0.0934" },
-          DAI: { EUR: "0.8638" },
-          ETC: { EUR: "48.57" },
-          DOGE: { EUR: "0.2378" },
-          XLM: { EUR: "0.3391" },
-          BNB: { EUR: "479.0" },
-          LINK: { EUR: "27.8" },
-          AVA: { EUR: "2.58" },
-          VET: { EUR: "0.12" },
-          BTCV: { EUR: "6.84" },
-          DOT: { EUR: "44.89" },
-          MATIC: { EUR: "1.8" },
-          ADA: { EUR: "1.84" },
-          UNI: { EUR: "23.09" },
-          BUSD: { EUR: "0.8641" },
-          SOL: { EUR: "202.65" },
-          WBTC: { EUR: "54766.1" },
-          THETA: { EUR: "6.49" },
-          ICP: { EUR: "41.41" },
-        };
-      }
-      setRates(getRates);
-    },
-    // fetchRates();
-    // }
-    []
-  );
+      // const rates = await response.json();
+      const rates = {
+        BTC: { EUR: "54741.1" },
+        LTC: { EUR: "178.91" },
+        ETH: { EUR: "3978.72" },
+        BCH: { EUR: "533.0" },
+        XRP: { EUR: "1.04" },
+        NANO: { EUR: "5.35" },
+        TRX: { EUR: "0.0934" },
+        DAI: { EUR: "0.8638" },
+        ETC: { EUR: "48.57" },
+        DOGE: { EUR: "0.2378" },
+        XLM: { EUR: "0.3391" },
+        BNB: { EUR: "479.0" },
+        LINK: { EUR: "27.8" },
+        AVA: { EUR: "2.58" },
+        VET: { EUR: "0.12" },
+        BTCV: { EUR: "6.84" },
+        DOT: { EUR: "44.89" },
+        MATIC: { EUR: "1.8" },
+        ADA: { EUR: "1.84" },
+        UNI: { EUR: "23.09" },
+        BUSD: { EUR: "0.8641" },
+        SOL: { EUR: "202.65" },
+        WBTC: { EUR: "54766.1" },
+        THETA: { EUR: "6.49" },
+        ICP: { EUR: "41.41" },
+      };
+      setRates(rates);
+    }
+    fetchRates();
+  }, []);
 
   return (
     <>

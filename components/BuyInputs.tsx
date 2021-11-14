@@ -2,22 +2,29 @@ import { CurrencySelection } from "./CurrencySelection";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
-import { useState } from "react";
+import { ChangeEventHandler, FC, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 
-function BuyInputs({
+type Props = {
+  handleBuyOnChange: ChangeEventHandler<HTMLInputElement>;
+  buyInput: string;
+  buyCurrencyName: string;
+  handleBuyCurrencyChange: (buyCurrencyName: string) => void;
+  rates: Record<string, Record<string, string>>;
+};
+const BuyInputs: FC<Props> = ({
   handleBuyOnChange,
   buyInput,
   buyCurrencyName,
   handleBuyCurrencyChange,
   rates,
-}) {
+}) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <Paper
       component="div"
       sx={{
-        p: "2px 4px",
+        p: "2% 6%",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -54,5 +61,5 @@ function BuyInputs({
       />
     </Paper>
   );
-}
+};
 export { BuyInputs };

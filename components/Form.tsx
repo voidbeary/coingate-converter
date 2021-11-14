@@ -8,6 +8,7 @@ import { PayInputs } from "./PayInputs";
 import { BuyInputs } from "./BuyInputs";
 import InputLabel from "@mui/material/InputLabel";
 import NativeSelect from "@mui/material/NativeSelect";
+import { PaymentOptions } from "../components/PaymentOptions";
 
 function calcBuyValue(payValue: string, rate: number): string {
   return Number((Number(payValue) / rate).toFixed(6)) / 1 + "";
@@ -33,8 +34,8 @@ type Props = {
 const Form: FC<Props> = ({ isDesktop, rates }) => {
   const [payCurrencyName, setPayCurrencyName] = useState("EUR");
   const [buyCurrencyName, setBuyCurrencyName] = useState("BTC");
-  const [payInput, setPayInput] = useState("");
-  const [buyInput, setBuyInput] = useState("");
+  const [payInput, setPayInput] = useState("0");
+  const [buyInput, setBuyInput] = useState("0");
   const router = useRouter();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
@@ -146,7 +147,7 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
           <NativeSelect
             defaultValue="payment"
             sx={{
-              p: "2px 4px",
+              p: "2% 6%",
               display: "flex",
               flexDirection: "row",
               borderRadius: "20px",
@@ -171,20 +172,11 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           >
-            <option value="bank-transfer" style={{ fontSize: "1rem" }}>
-              Bank transfer
-            </option>
-            <option value="credit-card" style={{ fontSize: "1rem" }}>
-              Credit card
-            </option>
-            <option value="debit-card" style={{ fontSize: "1rem" }}>
-              Debit card
-            </option>
-            );
+            <PaymentOptions />
           </NativeSelect>
           <BuyButton
             currencyName={buyCurrencyName}
-            disabled={!payInput || !buyInput}
+            disabled={!Number(payInput) || !Number(buyInput)}
           />
         </form>
       )}
