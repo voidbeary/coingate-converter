@@ -148,19 +148,20 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
           <InputLabel
             variant="standard"
             htmlFor="payment"
-            sx={{ fontSize: "1rem" }}
+            sx={{ fontSize: "1rem", marginBottom: "10%" }}
           >
             Payment method
           </InputLabel>
           <Select
             value={paymentMethod}
             sx={{
-              p: "2% 6%",
+              p: "1% 2%",
               display: "flex",
               flexDirection: "row",
               borderRadius: "20px",
               border: isFocused ? "1px solid #16DFB5" : "1px solid #D9D9D9",
               fontSize: "1rem",
+              marginBottom: "27%",
               "&::before": {
                 display: "none",
               },
@@ -187,7 +188,6 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
                 value={paymentMethod}
                 sx={{
                   fontSize: "1rem",
-                  padding: "2px 4px",
                   display: "flex",
                   flexDirection: "row",
                   borderRadius: "20px",

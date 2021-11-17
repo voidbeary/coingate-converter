@@ -33,6 +33,7 @@ const PayInput: FC<Props> = ({
         alignItems: "center",
         borderRadius: "20px",
         border: isFocused ? "1px solid #16DFB5" : "1px solid #D9D9D9",
+        marginBottom: "7%",
       }}
     >
       <InputLabel htmlFor="pay" sx={{ fontSize: "1rem" }}>
