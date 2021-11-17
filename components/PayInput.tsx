@@ -55,7 +55,7 @@ const PayInput: FC<Props> = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+      <Divider sx={{ height: 30, paddingLeft: "2%" }} orientation="vertical" />
       <CurrencySelection
         currencyName={payCurrencyName}
         onChange={handlePayCurrencyChange}

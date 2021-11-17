@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import { ChangeEventHandler, FC, FormEventHandler } from "react";
+import React, { ChangeEventHandler, FC, FormEventHandler } from "react";
 import { BuyButton } from "../components/BuyButton";
 import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -7,8 +7,14 @@ import { useRouter } from "next/router";
 import { PayInput } from "./PayInput";
 import { BuyInput } from "./BuyInput";
 import InputLabel from "@mui/material/InputLabel";
-import NativeSelect from "@mui/material/NativeSelect";
-import { PaymentOptions } from "../components/PaymentOptions";
+import Select from "@mui/material/Select";
+import { MenuItem } from "@mui/material";
+
+const paymentMethods = [
+  "SEPA Bank transfer",
+  "Credit and debit card",
+  "Apple pay",
+];
 
 function calcBuyValue(payValue: string, rate: number): string {
   return Number((Number(payValue) / rate).toFixed(6)) / 1 + "";
@@ -36,6 +42,7 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
   const [buyCurrencyName, setBuyCurrencyName] = useState("BTC");
   const [payInput, setPayInput] = useState("0");
   const [buyInput, setBuyInput] = useState("0");
+  const [paymentMethod, setPaymentMethod] = useState(paymentMethods[0]);
   const router = useRouter();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
@@ -91,7 +98,8 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
         gridArea: "form",
         position: "relative",
         marginBottom: isDesktop ? undefined : "10%",
-        padding: "2%",
+        padding: "5%",
+        paddingTop: isDesktop ? "20%" : "5%",
         "&::before": isDesktop
           ? {
               position: "absolute",
@@ -144,8 +152,8 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
           >
             Payment method
           </InputLabel>
-          <NativeSelect
-            defaultValue="payment"
+          <Select
+            value={paymentMethod}
             sx={{
               p: "2% 6%",
               display: "flex",
@@ -171,9 +179,24 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
             }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
+            onChange={(e) => setPaymentMethod(e.target.value)}
           >
-            <PaymentOptions />
-          </NativeSelect>
+            {paymentMethods.map((paymentMethod) => (
+              <MenuItem
+                key={paymentMethod}
+                value={paymentMethod}
+                sx={{
+                  fontSize: "1rem",
+                  padding: "2px 4px",
+                  display: "flex",
+                  flexDirection: "row",
+                  borderRadius: "20px",
+                }}
+              >
+                {paymentMethod}
+              </MenuItem>
+            ))}
+          </Select>
           <BuyButton
             currencyName={buyCurrencyName}
             disabled={!Number(payInput) || !Number(buyInput)}

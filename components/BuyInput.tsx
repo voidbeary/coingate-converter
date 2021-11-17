@@ -52,7 +52,7 @@ const BuyInput: FC<Props> = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+      <Divider sx={{ height: 30, paddingRight: "2%" }} orientation="vertical" />
       <CurrencySelection
         currencyName={buyCurrencyName}
         onChange={handleBuyCurrencyChange}
