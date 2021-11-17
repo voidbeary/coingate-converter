@@ -2,47 +2,44 @@ import { CurrencySelection } from "./CurrencySelection";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
-import { ChangeEventHandler, useState, FC } from "react";
+import { ChangeEventHandler, FC, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 
 type Props = {
-  handlePayOnChange: ChangeEventHandler<HTMLInputElement>;
-  payInput: string;
-  payCurrencyName: string;
-  handlePayCurrencyChange: (buyCurrencyName: string) => void;
-  rates: Record<string, Record<string, string>>;
+  handleBuyOnChange: ChangeEventHandler<HTMLInputElement>;
+  buyInput: string;
   buyCurrencyName: string;
+  handleBuyCurrencyChange: (buyCurrencyName: string) => void;
+  rates: Record<string, Record<string, string>>;
 };
-
-const PayInputs: FC<Props> = ({
-  handlePayOnChange,
-  payInput,
-  payCurrencyName,
-  handlePayCurrencyChange,
-  rates,
+const BuyInput: FC<Props> = ({
+  handleBuyOnChange,
+  buyInput,
   buyCurrencyName,
+  handleBuyCurrencyChange,
+  rates,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <Paper
       component="div"
       sx={{
-        p: "2% 6%",
+        p: "1% 1%",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         borderRadius: "20px",
-        border: isFocused ? "2px solid #16DFB5" : "1px solid #D9D9D9",
+        border: isFocused ? "1px solid #16DFB5" : "1px solid #D9D9D9",
       }}
     >
-      <InputLabel htmlFor="pay" sx={{ fontSize: "1rem" }}>
-        Pay
+      <InputLabel htmlFor="buy" sx={{ fontSize: "1rem" }}>
+        Buy
       </InputLabel>
       <InputBase
-        id="pay"
+        id="buy"
         type="text"
-        onChange={handlePayOnChange}
-        value={payInput}
+        onChange={handleBuyOnChange}
+        value={buyInput}
         sx={{
           ml: 1,
           flex: 2,
@@ -57,12 +54,12 @@ const PayInputs: FC<Props> = ({
       />
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
       <CurrencySelection
-        currencyName={payCurrencyName}
-        onChange={handlePayCurrencyChange}
-        selectOptions={Object.keys(rates[buyCurrencyName])}
-        label="payCurrency"
+        currencyName={buyCurrencyName}
+        onChange={handleBuyCurrencyChange}
+        selectOptions={Object.keys(rates)}
+        label="buyCurrency"
       />
     </Paper>
   );
 };
-export { PayInputs };
+export { BuyInput };

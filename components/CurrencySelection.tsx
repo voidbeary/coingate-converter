@@ -1,7 +1,10 @@
 import InputLabel from "@mui/material/InputLabel";
-import NativeSelect from "@mui/material/NativeSelect";
-import { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler } from "react";
 import type { FC } from "react";
+import { MenuItem } from "@mui/material";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Image from "next/image";
+import { Box } from "@mui/system";
 
 type Props = {
   currencyName: string;
@@ -16,28 +19,28 @@ const CurrencySelection: FC<Props> = ({
   selectOptions,
   label,
 }) => {
-  const handleChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
+  const handleChange = (e: SelectChangeEvent<string>) => {
     onChange(e.target.value);
   };
 
   return (
     <>
       <InputLabel variant="standard" htmlFor={label} />
-      <NativeSelect
+      <Select
         value={currencyName}
         sx={{
-          "&::before": {
-            display: "none",
-          },
-          "&::after": {
-            display: "none",
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
           },
           fontSize: "1rem",
+          minWidth: "30%",
+          height: "2%",
         }}
         inputProps={{
           name: label,
           id: label,
           sx: {
+            p: 0,
             "&:focus": {
               backgroundColor: "transparent",
             },
@@ -46,14 +49,29 @@ const CurrencySelection: FC<Props> = ({
         onChange={handleChange}
       >
         {selectOptions.map((name) => {
-          //<img src="https://assets.coingate.com/images/crypto-svgs/btc.svg" />
+          const lowercaseName = name.toLowerCase();
           return (
-            <option value={name} key={name} style={{ fontSize: "1rem" }}>
-              {name}
-            </option>
+            <MenuItem
+              value={name}
+              key={name}
+              sx={{
+                fontSize: "1rem",
+              }}
+            >
+              <Image
+                alt="currency logo"
+                src={`https://assets.coingate.com/images/crypto-svgs/${lowercaseName}.svg`}
+                height="20px"
+                width="20px"
+                className="image"
+              ></Image>
+              <Box component="span" sx={{ paddingLeft: "10px" }}>
+                {name}
+              </Box>
+            </MenuItem>
           );
         })}
-      </NativeSelect>
+      </Select>
     </>
   );
 };

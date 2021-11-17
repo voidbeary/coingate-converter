@@ -4,8 +4,8 @@ import { BuyButton } from "../components/BuyButton";
 import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
-import { PayInputs } from "./PayInputs";
-import { BuyInputs } from "./BuyInputs";
+import { PayInput } from "./PayInput";
+import { BuyInput } from "./BuyInput";
 import InputLabel from "@mui/material/InputLabel";
 import NativeSelect from "@mui/material/NativeSelect";
 import { PaymentOptions } from "../components/PaymentOptions";
@@ -122,7 +122,7 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
       )}
       {rates && (
         <form onSubmit={handleSubmit}>
-          <PayInputs
+          <PayInput
             handlePayOnChange={handlePayOnChange}
             payInput={payInput}
             payCurrencyName={payCurrencyName}
@@ -130,7 +130,7 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
             rates={rates}
             buyCurrencyName={buyCurrencyName}
           />
-          <BuyInputs
+          <BuyInput
             handleBuyOnChange={handleBuyOnChange}
             buyInput={buyInput}
             buyCurrencyName={buyCurrencyName}
@@ -151,7 +151,7 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
               display: "flex",
               flexDirection: "row",
               borderRadius: "20px",
-              border: isFocused ? "2px solid #16DFB5" : "1px solid #D9D9D9",
+              border: isFocused ? "1px solid #16DFB5" : "1px solid #D9D9D9",
               fontSize: "1rem",
               "&::before": {
                 display: "none",

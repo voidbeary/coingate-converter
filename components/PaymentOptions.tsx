@@ -1,5 +1,9 @@
 import type { FC } from "react";
-const paymentMethods = ["Bank transfer", "Credit and debit card", "Apple pay"];
+const paymentMethods = [
+  "SEPA Bank transfer",
+  "Credit and debit card",
+  "Apple pay",
+];
 
 const PaymentOptions: FC = () => {
   return (
