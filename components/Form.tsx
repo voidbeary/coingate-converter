@@ -40,8 +40,8 @@ type Props = {
 const Form: FC<Props> = ({ isDesktop, rates }) => {
   const [payCurrencyName, setPayCurrencyName] = useState("EUR");
   const [buyCurrencyName, setBuyCurrencyName] = useState("BTC");
-  const [payInput, setPayInput] = useState("0");
-  const [buyInput, setBuyInput] = useState("0");
+  const [payInput, setPayInput] = useState("");
+  const [buyInput, setBuyInput] = useState("");
   const [paymentMethod, setPaymentMethod] = useState(paymentMethods[0]);
   const router = useRouter();
 
