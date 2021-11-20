@@ -79,9 +79,8 @@ const Home: NextPage<Props> = ({ isDesktop }) => {
           >
             <Header isDesktop={isDesktop} />
             <Description isDesktop={isDesktop} />
-            <div>
-              <Form isDesktop={isDesktop} rates={rates} />
-            </div>
+
+            <Form isDesktop={isDesktop} rates={rates} />
           </Box>
         </Box>
       </Box>

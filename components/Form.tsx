@@ -90,119 +90,120 @@ const Form: FC<Props> = ({ isDesktop, rates }) => {
   };
   const [isFocused, setIsFocused] = useState(false);
   return (
-    <Box
-      sx={{
-        backgroundColor: "background.paper",
-        borderRadius: "30px",
-        width: isDesktop ? "75%" : "100%",
-        gridArea: "form",
-        position: "relative",
-        marginBottom: isDesktop ? undefined : "10%",
-        padding: "5%",
-        paddingTop: isDesktop ? "20%" : "5%",
-        "&::before": isDesktop
-          ? {
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              content: '""',
-              zIndex: -1,
-              backgroundColor: "#E9F6FF",
-              top: "-10%",
-              left: "-13%",
-              transform: "rotate(-5.53deg)",
-              borderRadius: "30px",
-            }
-          : undefined,
-      }}
-    >
-      {!rates && (
-        <Box
-          sx={{
-            display: "flex",
-            minHeight: isDesktop ? "100%" : "20vh",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <CircularProgress />
-        </Box>
-      )}
-      {rates && (
-        <form onSubmit={handleSubmit}>
-          <PayInput
-            handlePayOnChange={handlePayOnChange}
-            payInput={payInput}
-            payCurrencyName={payCurrencyName}
-            handlePayCurrencyChange={handlePayCurrencyChange}
-            rates={rates}
-            buyCurrencyName={buyCurrencyName}
-          />
-          <BuyInput
-            handleBuyOnChange={handleBuyOnChange}
-            buyInput={buyInput}
-            buyCurrencyName={buyCurrencyName}
-            handleBuyCurrencyChange={handleBuyCurrencyChange}
-            rates={rates}
-          />
-          <InputLabel
-            variant="standard"
-            htmlFor="payment"
-            sx={{ fontSize: "1rem", marginBottom: "10%" }}
-          >
-            Payment method
-          </InputLabel>
-          <Select
-            value={paymentMethod}
+    <Box sx={{ gridArea: "form" }}>
+      <Box
+        sx={{
+          backgroundColor: "background.paper",
+          borderRadius: "30px",
+          width: isDesktop ? "75%" : "100%",
+          position: "relative",
+          marginBottom: isDesktop ? undefined : "10%",
+          padding: "5%",
+          paddingTop: isDesktop ? "20%" : "5%",
+          "&::before": isDesktop
+            ? {
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                content: '""',
+                zIndex: -1,
+                backgroundColor: "#E9F6FF",
+                top: "-10%",
+                left: "-13%",
+                transform: "rotate(-5.53deg)",
+                borderRadius: "30px",
+              }
+            : undefined,
+        }}
+      >
+        {!rates && (
+          <Box
             sx={{
-              p: "1% 2%",
               display: "flex",
-              flexDirection: "row",
-              borderRadius: "20px",
-              border: isFocused ? "1px solid #16DFB5" : "1px solid #D9D9D9",
-              fontSize: "1rem",
-              marginBottom: "27%",
-              "&::before": {
-                display: "none",
-              },
-              "&::after": {
-                display: "none",
-              },
+              minHeight: isDesktop ? "100%" : "20vh",
+              justifyContent: "center",
+              alignItems: "center",
             }}
-            inputProps={{
-              name: "payment",
-              id: "payment",
-              sx: {
-                "&:focus": {
-                  backgroundColor: "transparent",
-                },
-              },
-            }}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            onChange={(e) => setPaymentMethod(e.target.value)}
           >
-            {paymentMethods.map((paymentMethod) => (
-              <MenuItem
-                key={paymentMethod}
-                value={paymentMethod}
-                sx={{
-                  fontSize: "1rem",
-                  display: "flex",
-                  flexDirection: "row",
-                  borderRadius: "20px",
-                }}
-              >
-                {paymentMethod}
-              </MenuItem>
-            ))}
-          </Select>
-          <BuyButton
-            currencyName={buyCurrencyName}
-            disabled={!Number(payInput) || !Number(buyInput)}
-          />
-        </form>
-      )}
+            <CircularProgress />
+          </Box>
+        )}
+        {rates && (
+          <form onSubmit={handleSubmit}>
+            <PayInput
+              handlePayOnChange={handlePayOnChange}
+              payInput={payInput}
+              payCurrencyName={payCurrencyName}
+              handlePayCurrencyChange={handlePayCurrencyChange}
+              rates={rates}
+              buyCurrencyName={buyCurrencyName}
+            />
+            <BuyInput
+              handleBuyOnChange={handleBuyOnChange}
+              buyInput={buyInput}
+              buyCurrencyName={buyCurrencyName}
+              handleBuyCurrencyChange={handleBuyCurrencyChange}
+              rates={rates}
+            />
+            <InputLabel
+              variant="standard"
+              htmlFor="payment"
+              sx={{ fontSize: "1rem", marginBottom: "10%" }}
+            >
+              Payment method
+            </InputLabel>
+            <Select
+              value={paymentMethod}
+              sx={{
+                p: "1% 2%",
+                display: "flex",
+                flexDirection: "row",
+                borderRadius: "20px",
+                border: isFocused ? "1px solid #16DFB5" : "1px solid #D9D9D9",
+                fontSize: "1rem",
+                marginBottom: "27%",
+                "&::before": {
+                  display: "none",
+                },
+                "&::after": {
+                  display: "none",
+                },
+              }}
+              inputProps={{
+                name: "payment",
+                id: "payment",
+                sx: {
+                  "&:focus": {
+                    backgroundColor: "transparent",
+                  },
+                },
+              }}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            >
+              {paymentMethods.map((paymentMethod) => (
+                <MenuItem
+                  key={paymentMethod}
+                  value={paymentMethod}
+                  sx={{
+                    fontSize: "1rem",
+                    display: "flex",
+                    flexDirection: "row",
+                    borderRadius: "20px",
+                  }}
+                >
+                  {paymentMethod}
+                </MenuItem>
+              ))}
+            </Select>
+            <BuyButton
+              currencyName={buyCurrencyName}
+              disabled={!Number(payInput) || !Number(buyInput)}
+            />
+          </form>
+        )}
+      </Box>
     </Box>
   );
 };
