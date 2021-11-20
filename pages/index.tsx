@@ -33,7 +33,8 @@ const Home: NextPage<Props> = ({ isDesktop }) => {
       <Box
         component="main"
         sx={{
-          overflow: "auto",
+          overflowY: "auto",
+          overflowX: "hidden",
           minHeight: "100vh",
         }}
       >
